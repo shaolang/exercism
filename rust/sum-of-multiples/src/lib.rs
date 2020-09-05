@@ -1,6 +1,6 @@
 pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
     (1..limit)
-        .map(|i| if factors.iter().any(|f| is_factor(i, *f)) { i } else { 0 })
+        .filter(|i| factors.iter().any(|f| is_factor(*i, *f)))
         .sum()
 }
 
