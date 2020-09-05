@@ -3,14 +3,14 @@ pub fn factors(n: u64) -> Vec<u64> {
     let mut i = n;
     let mut f = 2;
 
-    loop {
-        if i == 1 { return fs; }
-
-        if i % f == 0 {
+    while i > 1 {
+        while i % f == 0 {
             fs.push(f);
-            i = i / f;
-        } else {
-            f += 1;
+            i /= f;
         }
+
+        f += 1;
     }
+
+    return fs;
 }
