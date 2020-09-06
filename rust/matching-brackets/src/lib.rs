@@ -1,25 +1,15 @@
 pub fn brackets_are_balanced(string: &str) -> bool {
-    let mut opens: Vec<char> = vec![];
+    let mut closes: Vec<char> = vec![];
 
     for c in string.chars() {
-        let balanced = match c {
-            '(' | '[' | '{' => { opens.push(c); true }
-            ')' | ']' | '}' if matching(opens.last(), c) => { opens.pop().unwrap(); true }
-            ')' | ']' | '}' => false,
-            _ => true,
-        };
-
-        if !balanced { return false; }
+        match c {
+            '('     => closes.push(')'),
+            '['     => closes.push(']'),
+            '{'     => closes.push('}'),
+            ')' | ']' | '}' if closes.pop() != Some(c) => { return false; }
+            _       => {}
+        }
     }
 
-    opens.is_empty()
-}
-
-fn matching(open: Option<&char>, close: char) -> bool {
-    match open {
-        Some('(') if close == ')' => true,
-        Some('[') if close == ']' => true,
-        Some('{') if close == '}' => true,
-        _ => false,
-    }
+    closes.is_empty()
 }
