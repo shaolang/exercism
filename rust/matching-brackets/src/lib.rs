@@ -3,11 +3,13 @@ pub fn brackets_are_balanced(string: &str) -> bool {
 
     for c in string.chars() {
         match c {
-            '('     => closes.push(')'),
-            '['     => closes.push(']'),
-            '{'     => closes.push('}'),
-            ')' | ']' | '}' if closes.pop() != Some(c) => { return false; }
-            _       => {}
+            '(' => closes.push(')'),
+            '[' => closes.push(']'),
+            '{' => closes.push('}'),
+            ')' | ']' | '}' if closes.pop() != Some(c) => {
+                return false;
+            }
+            _ => {}
         }
     }
 
