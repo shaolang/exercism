@@ -15,29 +15,16 @@ impl HighScores {
     }
 
     pub fn latest(&self) -> Option<u32> {
-        if let Some(n) = self.scores.last() {
-            Some(*n)
-        } else {
-            None
-        }
+        self.scores.last().copied()
     }
 
     pub fn personal_best(&self) -> Option<u32> {
-        if self.scores.is_empty() {
-            None
-        } else {
-            Some(self.scores.iter().fold(0, |hi, x| std::cmp::max(hi, *x)))
-        }
+        self.scores.iter().max().copied()
     }
 
     pub fn personal_top_three(&self) -> Vec<u32> {
-        let mut vs = Vec::with_capacity(self.scores.len());
-        vs.extend(&self.scores);
-        vs.sort();
-        vs.reverse();
-
-        let n = std::cmp::min(3, vs.len());
-
-        vs[0..n].to_vec()
+        let mut v = self.scores.to_owned();
+        v.sort_unstable_by(|a, b| a.cmp(b).reverse());
+        v.iter().cloned().take(3).collect()
     }
 }
