@@ -5,10 +5,8 @@ defmodule Acronym do
   """
   @spec abbreviate(String.t()) :: String.t()
   def abbreviate(string) do
-    string
-    |> String.replace(~r{([a-z])([A-Z])([a-z])}, "\\1 \\2\\3")
-    |> String.split(~r{ |-|_})
-    |> Stream.map(fn word -> String.first word end)
+    ~r{^(\w)|\s_?(\w)|[a-z-]([A-Z])}
+    |> Regex.scan(string, capture: :all_but_first)
     |> Enum.join("")
     |> String.upcase
   end
