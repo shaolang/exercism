@@ -17,8 +17,6 @@ defmodule ProteinTranslation do
                    |> Stream.chunk_every(3)
                    |> Enum.map(fn chunk -> of_codon(Enum.join(chunk)) end)
 
-    IO.inspect("chunks: #{rna |> String.split("") |> Enum.chunk_every(3)}")
-    # IO.inspect("translations: #{translations}")
     case Enum.all?(translations, fn {x, _} -> x == :ok end) do
       false -> {:error, "invalid RNA"}
       true  ->
