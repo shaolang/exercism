@@ -20,6 +20,9 @@ defmodule Accumulate do
     accumulate([], list, fun)
   end
 
-  defp accumulate(result, [], _), do: Enum.reverse(result)
-  defp accumulate(result, [x|xs], fun), do: accumulate([fun.(x)|result], xs, fun)
+  defp accumulate(acc, [], _), do: reverse([], acc)
+  defp accumulate(acc, [x|xs], fun), do: accumulate([fun.(x)|acc], xs, fun)
+
+  defp reverse(result, []), do: result
+  defp reverse(result, [x|xs]), do: reverse([x|result], xs)
 end
