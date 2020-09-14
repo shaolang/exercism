@@ -14,13 +14,11 @@ defmodule Pangram do
 
   @spec pangram?(String.t()) :: boolean
   def pangram?(sentence) do
-    count = sentence
+    sentence
     |> String.downcase
-    |> String.replace(~r{[^A-Za-z]}, "")
+    |> String.replace(~r{[^a-z]}, "")
     |> String.split("", trim: true)
     |> Enum.frequencies
-    |> Enum.count
-
-    count == 26
+    |> Enum.count == 26
   end
 end
