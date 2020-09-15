@@ -10,9 +10,8 @@ defmodule Isogram do
 
     uniques_count = original
     |> String.graphemes
-    |> Enum.into(%MapSet{})
-    |> MapSet.size
+    |> Enum.uniq
 
-    uniques_count == String.length(original)
+    length(uniques_count) == String.length(original)
   end
 end
