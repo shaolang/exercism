@@ -9,7 +9,7 @@ defmodule Hamming do
   """
   @spec hamming_distance([char], [char]) :: {:ok, non_neg_integer} | {:error, String.t()}
   def hamming_distance(strand1, strand2) do
-    case Enum.count(strand1) == Enum.count(strand2) do
+    case length(strand1) == length(strand2) do
       false -> {:error, "Lists must be the same length"}
       true ->
         {:ok, strand1
