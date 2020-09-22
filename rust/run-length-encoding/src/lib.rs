@@ -1,3 +1,5 @@
+use regex::Regex;
+
 pub fn encode(source: &str) -> String {
     if source == "" {
         "".to_string()
@@ -34,5 +36,13 @@ fn chunk(s: &str) -> Vec<(u8, char)> {
 }
 
 pub fn decode(source: &str) -> String {
-    source.to_string()
+    let regex = Regex::new("(\\d+)?([^0-9])").unwrap();
+
+    regex.captures_iter(source)
+        .map(|m|
+             match m.get(1).map_or(1, |n| n.as_str().parse().unwrap()) {
+                 1 => m.get(2).unwrap().as_str().to_string(),
+                 n => m.get(2).unwrap().as_str().repeat(n)
+             })
+    .collect()
 }
