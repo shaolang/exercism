@@ -1,8 +1,8 @@
 module Clock (addDelta, fromHourMin, toString) where
 
-data Clock = Clock {
-  minutes :: Int
-} deriving Eq
+import Text.Printf    (printf)
+
+data Clock = Clock Int deriving Eq
 
 fromHourMin :: Int -> Int -> Clock
 fromHourMin hour min = Clock ms
@@ -11,12 +11,8 @@ fromHourMin hour min = Clock ms
            | otherwise          = 1440 + rem totalMinutes 1440
 
 toString :: Clock -> String
-toString clock = mconcat [timeToString $ minutes clock `quot` 60, ":",
-                          timeToString $ minutes clock `rem` 60]
+toString (Clock minutes) = printf "%02d:%02d" h m
+  where (h, m) = minutes `divMod` 60
 
 addDelta :: Int -> Int -> Clock -> Clock
-addDelta hour min clock = fromHourMin hour (minutes clock + min)
-
-timeToString :: Int -> String
-timeToString n | n < 10     = mconcat ["0", show n]
-               | otherwise  = show n
+addDelta hour min (Clock minutes) = fromHourMin hour (minutes + min)
