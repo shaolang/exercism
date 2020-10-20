@@ -62,18 +62,18 @@ cases = [ Case { description = "single digit strings can not be valid"
                }
 -- This track is not testing these cases, since we would rather focus on the algorithm,
 -- and because it seems strange to be unable to distinguish between well-formed invalid input and malformed input.
---        , Case { description = "valid strings with a non-digit added at the end become invalid"
---               , input       = "059a"
---               , expected    = False
---               }
---        , Case { description = "valid strings with punctuation included become invalid"
---               , input       = "055-444-285"
---               , expected    = False
---               }
---        , Case { description = "valid strings with symbols included become invalid"
---               , input       = "055£ 444$ 285"
---               , expected    = False
---               }
+        , Case { description = "valid strings with a non-digit added at the end become invalid"
+               , input       = "059a"
+               , expected    = False
+               }
+        , Case { description = "valid strings with punctuation included become invalid"
+               , input       = "055-444-285"
+               , expected    = False
+               }
+        , Case { description = "valid strings with symbols included become invalid"
+               , input       = "055£ 444$ 285"
+               , expected    = False
+               }
         , Case { description = "single zero with space is invalid"
                , input       = " 0"
                , expected    = False
@@ -86,12 +86,12 @@ cases = [ Case { description = "single digit strings can not be valid"
                , input       = "091"
                , expected    = True
                }
---        , Case { description = "using ascii value for non-doubled non-digit isn't allowed"
---               , input       = "055b 444 285"
---               , expected    = False
---               }
---        , Case { description = "using ascii value for doubled non-digit isn't allowed"
---               , input       = ":9"
---               , expected    = False
---               }
+        , Case { description = "using ascii value for non-doubled non-digit isn't allowed"
+               , input       = "055b 444 285"
+               , expected    = False
+               }
+        , Case { description = "using ascii value for doubled non-digit isn't allowed"
+               , input       = ":9"
+               , expected    = False
+               }
         ]
