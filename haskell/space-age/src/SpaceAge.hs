@@ -13,11 +13,14 @@ earthSecondsPerYear :: Float
 earthSecondsPerYear = 31557600
 
 ageOn :: Planet -> Float -> Float
-ageOn Mercury seconds = seconds / (earthSecondsPerYear * 0.2408467)
-ageOn Venus   seconds = seconds / (earthSecondsPerYear * 0.61519726)
-ageOn Earth   seconds = seconds / earthSecondsPerYear
-ageOn Mars    seconds = seconds / (earthSecondsPerYear * 1.8808158)
-ageOn Jupiter seconds = seconds / (earthSecondsPerYear * 11.862615)
-ageOn Saturn  seconds = seconds / (earthSecondsPerYear * 29.447498)
-ageOn Uranus  seconds = seconds / (earthSecondsPerYear * 84.016846)
-ageOn Neptune seconds = seconds / (earthSecondsPerYear * 164.79132)
+ageOn planet seconds = seconds / (earthSecondsPerYear * orbitalPeriod planet)
+
+orbitalPeriod :: Planet -> Float
+orbitalPeriod Mercury = 0.2408467
+orbitalPeriod Venus   = 0.61519726
+orbitalPeriod Earth   = 1.0
+orbitalPeriod Mars    = 1.8808158
+orbitalPeriod Jupiter = 11.862615
+orbitalPeriod Saturn  = 29.447498
+orbitalPeriod Uranus  = 84.016846
+orbitalPeriod Neptune = 164.79132
