@@ -24,10 +24,8 @@ pub fn sublist<T: PartialEq>(first_list: &[T], second_list: &[T]) -> Comparison 
 }
 
 fn is_sublist<T: PartialEq>(small: &[T], big: &[T], true_value: Comparison) -> Comparison {
-    let n = small.len();
-
-    for i in 0..=(big.len() - n) {
-        if small == &big[i..(i + n)] {
+    for window in big.windows(small.len()) {
+        if window == small {
             return true_value;
         }
     }
