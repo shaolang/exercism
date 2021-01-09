@@ -36,7 +36,6 @@ fn no_columns() {
 }
 
 #[test]
-#[ignore]
 fn no_mines() {
     #[rustfmt::skip]
     run_test(&[

@@ -1,5 +1,5 @@
 pub fn annotate(minefield: &[&str]) -> Vec<String> {
     if minefield.is_empty() { return vec![]; }
 
-    vec!["".to_string()]
+    minefield.iter().map(|row| row.to_string()).collect()
 }
