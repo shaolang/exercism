@@ -5,12 +5,12 @@ pub fn anagrams_for<'a>(word: &'a str, possible_anagrams: &'a [&str]) -> HashSet
     let target = sort_chars_in_string(&lword);
 
     possible_anagrams
-        .into_iter()
+        .iter()
         .filter(|w| {
             let lw = w.to_lowercase();
             lw != lword && sort_chars_in_string(&lw) == target
         })
-        .map(|w| *w)
+        .copied()
         .collect::<HashSet<&str>>()
 }
 
