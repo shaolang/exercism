@@ -17,12 +17,9 @@ pub fn sublist<T: PartialEq>(first_list: &[T], second_list: &[T]) -> Comparison 
 
 fn _sublist<T: PartialEq>(short: &[T], long: &[T], retval: Comparison) -> Comparison {
     let slen = short.len();
-    let llen = long.len();
 
-    if &long[0..slen] == short {
+    if slen == 0 || long.windows(slen).any(|w| w == short) {
         retval
-    } else if let Some(idx) = long[1..llen].iter().position(|t| *t == short[0]) {
-        _sublist(short, &long[idx + 1..llen], retval)
     } else {
         Comparison::Unequal
     }
