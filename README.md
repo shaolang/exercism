@@ -1,3 +1,3 @@
 Solutions to exercises on [Exercism.io][exercism].
 
-[exercism]: https://exercism.io
+[exercism]: https://exercism.org
